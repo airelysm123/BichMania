@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://k8qyw2kpfq4u"]
+
+[ext_resource type="Texture2D" uid="uid://7xads2q3548w" path="res://Sprites/enemigo 2.png" id="1_7jyx1"]
+[ext_resource type="Script" path="res://enemigo.gd" id="1_trqvu"]
+[ext_resource type="Texture2D" uid="uid://c8d2viq7r7mf" path="res://Sprites/enemigo 1.png" id="2_k1ck3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o8k10"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7jyx1")
+}],
+"loop": true,
+"name": &"chiquito",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k1ck3")
+}],
+"loop": true,
+"name": &"grande",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o2xlj"]
+radius = 68.2495
+
+[node name="Enemigo" type="RigidBody2D"]
+position = Vector2(303, 199)
+collision_layer = 0
+gravity_scale = 0.0
+script = ExtResource("1_trqvu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-45, -12)
+scale = Vector2(0.2, 0.213)
+sprite_frames = SubResource("SpriteFrames_o8k10")
+animation = &"grande"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-44, -11)
+shape = SubResource("CircleShape2D_o2xlj")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-37, -12)
+scale = Vector2(2.5125, 2.25)

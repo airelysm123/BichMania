@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8lhs4fsfxfqw"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_ewpta"]
+[ext_resource type="Texture2D" uid="uid://bseyljyqdb0rt" path="res://Sprites/bicho.png" id="1_sy3n3"]
+[ext_resource type="Texture2D" uid="uid://n4mybre4qetn" path="res://Sprites/de lado.png" id="2_l7opa"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4g42"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_sy3n3")
+}],
+"loop": true,
+"name": &"frente",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_sy3n3")
+}],
+"loop": true,
+"name": &"ladoD",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_l7opa")
+}],
+"loop": true,
+"name": &"ladoI",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7apo"]
+size = Vector2(101, 85)
+
+[node name="Player" type="Area2D"]
+position = Vector2(288, 210)
+script = ExtResource("1_ewpta")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -1)
+scale = Vector2(0.115, 0.1045)
+sprite_frames = SubResource("SpriteFrames_g4g42")
+animation = &"frente"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_j7apo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
